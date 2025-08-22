@@ -1,0 +1,22 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.victoriametrics
+version: 1.124.0
+name: VictoriaMetrics
+description: VictoriaMetrics is a fast, cost-effective and scalable monitoring solution and time series database.
+license: https://github.com/VictoriaMetrics/VictoriaMetrics/blob/master/LICENSE
+homepage: https://victoriametrics.com/
+application:
+  subdomain: victoriametrics
+  routes:
+  - /=http://$uid.web.app.ikw.lzc.victoriametrics.lzcapp:8428
+  multi_instance: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/victoriametrics/victoria-metrics:de7b3f6dfd8f0cba
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+    - /lzcapp/var/data:/victoria-metrics-data
+    args:
+    - --selfScrapeInterval=5s
+    - -storageDataPath=/victoria-metrics-data

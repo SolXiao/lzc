@@ -1,0 +1,19 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.kite
+version: 0.0.1
+name: kite
+description: A modern, lightweight Kubernetes dashboard
+license: https://choosealicense.com/licenses/apache-2.0
+homepage: https://github.com/zxh326/kite
+application:
+  subdomain: kite
+  routes:
+  - /=http://$uid.web.app.ikw.lzc.kite.lzcapp:8080
+  multi_instance: true
+services:
+  web:
+    image: ghcr.io/kweizh/kite:v0.1.0
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+    - /lzcapp/var/data:/home/nonroot/.kube

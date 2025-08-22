@@ -1,0 +1,29 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.moneyprinterturbo
+version: 0.0.1
+name: MoneyPrinterTurbo
+description: 利用AI大模型，一键生成高清短视频 Generate short videos with one click using AI LLM.
+license: https://choosealicense.com/licenses/mit
+homepage: https://github.com/harry0703/MoneyPrinterTurbo
+application:
+  subdomain: moneyprinterturbo
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.moneyprinterturbo.lzcapp:8501
+  user_app: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/kweizh/moneyprinterturbo:75a0201ceb4464d4
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+    - /lzcapp/var/data:/MoneyPrinterTurbo/storage
+    entrypoint: |
+      streamlit run ./webui/Main.py --browser.serverAddress=127.0.0.1 --server.enableCORS=True --browser.gatherUsageStats=False
+  api:
+    image: registry.lazycat.cloud/ikw/kweizh/moneyprinterturbo:75a0201ceb4464d4
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+    - /lzcapp/var/data:/MoneyPrinterTurbo/storage
+    entrypoint: |
+      python3 main.py

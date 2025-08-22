@@ -1,0 +1,20 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.k8m
+version: 0.0.1
+name: k8m
+description: 一款轻量级、跨平台的 Mini Kubernetes AI Dashboard，支持大模型+智能体+MCP(支持设置操作权限)，集成多集群管理、智能分析、实时异常检测等功能，支持多架构并可单文件部署，助力高效集群管理与运维优化。
+license: https://choosealicense.com/licenses/mit
+homepage: https://github.com/weibaohui/k8m
+application:
+  subdomain: k8m
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.k8m.lzcapp:3618
+  user_app: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/minik8m/k8m:92ae29a12360a8e5
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+      - /lzcapp/var/data:/app/data
+    entrypoint: /app/k8m --kubeconfig /lzcapp/var/data/kubeconfig

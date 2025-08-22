@@ -1,0 +1,20 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.quickwit
+version: 0.0.1
+name: Quickwit
+description: Quickwit is the first engine to execute complex search and analytics queries directly on cloud storage with sub-second latency.
+license: https://choosealicense.com/licenses/apache-2.0
+homepage: https://github.com/quickwit-oss/quickwit
+application:
+  subdomain: quickwit
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.quickwit.lzcapp:7280
+  multi_instance: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/quickwit/quickwit:194b9e5b277ae432
+    environment:
+    - TZ=Asia/Shanghai
+    binds:
+      - /lzcapp/var/data:/quickwit/qwdata
+    entrypoint: quickwit run --yes

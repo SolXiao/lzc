@@ -1,0 +1,23 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.tmm
+version: 0.0.1
+name: TinyMediaManager
+description: tinyMediaManager (https://www.tinymediamanager.org) is a media management tool written in Java/Swing. It is written to provide media metadata.
+license: https://choosealicense.com/licenses/apache-2.0/
+homepage: https://gitlab.com/tinyMediaManager/tinyMediaManager
+application:
+  subdomain: tmm
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.tmm.lzcapp:4000
+  user_app: true
+  multi_instance: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/tinymediamanager/tinymediamanager:88861f321d0f2dd5
+#    environment:
+#    - CADDY_ADMIN="0.0.0.0"
+    binds:
+      - /lzcapp/var/data:/data
+      - /lzcapp/var/addons:/app/addons
+      - /lzcapp/run/mnt/home:/media
+#    entrypoint: /lzcapp/pkg/content/run.sh

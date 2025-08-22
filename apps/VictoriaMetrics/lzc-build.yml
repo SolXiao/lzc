@@ -1,0 +1,7 @@
+manifest: ./manifest.yml
+pkgout: ./
+icon: ./icon.png
+devshell:
+  routes:
+    - /=http://127.0.0.1:8428
+

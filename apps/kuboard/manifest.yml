@@ -1,0 +1,19 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.kuboard
+version: 0.0.1
+name: Kuboard
+description: Kubernetes 多集群管理界面
+homepage: https://github.com/eip-work/kuboard-press
+application:
+  subdomain: kuboard
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.kuboard.lzcapp:80
+  user_app: true
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/eipwork/kuboard:aa0947ed6a1d52ee
+    environment:
+    - TZ=Asia/Shanghai
+    - KUBOARD_AGENT_SERVER_TCP_PORT="10081"
+    binds:
+      - /lzcapp/var/data:/data

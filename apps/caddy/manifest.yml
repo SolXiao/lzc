@@ -1,0 +1,23 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.caddy
+version: 0.0.2
+name: Caddy
+description: Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
+license: https://choosealicense.com/licenses/apache-2.0/
+homepage: https://github.com/caddyserver/caddy
+application:
+  subdomain: caddy
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.caddy.lzcapp:2015
+  user_app: true
+services:
+  web:
+    image: registry.lazycat.cloud/u7103784144/library/caddy:168773f6a71e59a5
+#    environment:
+#    - CADDY_ADMIN="0.0.0.0"
+    binds:
+      - /lzcapp/var/caddyfile:/etc/caddy
+      - /lzcapp/var/site:/srv
+      - /lzcapp/var/data:/data
+      - /lzcapp/var/config:/config
+    entrypoint: /lzcapp/pkg/content/run.sh
