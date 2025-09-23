@@ -1,0 +1,37 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.navidrome
+version: 0.4.3
+name: kwNavidrome
+description: 与Subsonic/Airsonic兼容的现代音乐服务器和串流器，支持懒猫 OIDC 登录。
+license: https://choosealicense.com/licenses/gpl-3.0/
+homepage: https://github.com/zwpaper/navidrome
+application:
+  subdomain: kwnavidrome
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.navidrome.lzcapp:4533/
+  oidc_redirect_path: /auth/oidc/callback
+  background_task: true
+  multi_instance: true
+locales:
+  zh:
+    name: "Navidrome音乐服务器"
+    description: "与Subsonic/Airsonic兼容的现代音乐服务器和串流器，支持懒猫 OIDC 登录"
+  zh_CN:
+    name: "Navidrome音乐服务器"
+    description: "与Subsonic/Airsonic兼容的现代音乐服务器和串流器，支持懒猫 OIDC 登录"
+  en:
+    name: "Navidrome Music Server"
+    description: "Modern Music Server and Streamer compatible with Subsonic/Airsonic, with Lazycat OIDC login support"
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/kweizh/navidrome:fe46f5188dcf5ad2
+    binds:
+      - /lzcapp/run/mnt/home/Music:/music
+      - /lzcapp/run/mnt/home/下载:/music/pt
+      - /lzcapp/var/data:/data
+    environment:
+      - ND_OIDC_CLIENTID=${LAZYCAT_AUTH_OIDC_CLIENT_ID}
+      - ND_OIDC_CLIENTSECRET=${LAZYCAT_AUTH_OIDC_CLIENT_SECRET}
+      - ND_OIDC_ISSUERURL=${LAZYCAT_AUTH_OIDC_ISSUER_URI}
+      - ND_OIDC_REDIRECTURI=https://${LAZYCAT_APP_DOMAIN}/auth/oidc/callback
+      - ND_OIDC_ENABLED=true
