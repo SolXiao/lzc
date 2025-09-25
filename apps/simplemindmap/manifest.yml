@@ -1,0 +1,30 @@
+lzc-sdk-version: 0.1
+package: app.ikw.lzc.simplemindmap
+version: 0.0.1
+name: SimpleMindMap
+description: A simple, elegant and feature-rich mind mapping tool.
+license: https://choosealicense.com/licenses/mit/
+homepage: https://github.com/h-ral/mind-map
+application:
+  subdomain: simplemindmap
+  routes:
+  - /=http://$uid.web.app.ikw.lzc.simplemindmap.lzcapp:8080
+  multi_instance: true
+locales:
+  zh:
+    name: "思绪思维导图"
+    description: "一个简单、优雅、功能丰富的思维导图工具，可以编辑本机的思维导图文件。"
+  zh_CN:
+    name: "思绪思维导图"
+    description: "一个简单、优雅、功能丰富的思维导图工具，可以编辑本机的思维导图文件。"
+  en:
+    name: "SimpleMindMap"
+    description: "A simple, elegant and feature-rich mind-map tool, save and update the mind-map file in your own computer"
+services:
+  web:
+    image: registry.lazycat.cloud/ikw/hraulein/mind-map:6f2e07d70b4fff3d
+    environment:
+    - TZ=Asia/Shanghai
+    - GIN_MODE=release
+    binds:
+    - /lzcapp/var/data:/data
