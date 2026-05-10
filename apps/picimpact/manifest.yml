@@ -2,7 +2,7 @@ lzc-sdk-version: 0.1
 application:
   subdomain: picimpact
   routes:
-    - /=http://$uid.web.app.ikw.lzc.picimpact.lzcapp:3000
+    - /=http://$uid.web.cloud.lazycat.app.picimpact.lzcapp:3000
   multi_instance: true
 services:
   web:
