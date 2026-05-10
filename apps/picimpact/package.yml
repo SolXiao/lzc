@@ -1,0 +1,18 @@
+package: cloud.lazycat.app.picimpact
+version: 0.4.4
+name: PicImpact
+description: >-
+  A powerful, privacy-focused image editor running entirely in your browser with
+  no server uploads
+license: https://choosealicense.com/licenses/mit
+homepage: https://github.com/besscroft/picimpact
+locales:
+  zh:
+    name: PicImpact 图片编辑器
+    description: 强大的本地图片编辑器，完全在浏览器中运行，保护隐私，无需上传图片到服务器
+  zh_CN:
+    name: PicImpact 图片编辑器
+    description: 强大的本地图片编辑器，完全在浏览器中运行，保护隐私，无需上传图片到服务器
+  en:
+    name: PicImpact
+    description: A powerful, privacy-focused image editor running entirely in your browser

@@ -1,0 +1,28 @@
+lzc-sdk-version: 0.1
+application:
+  subdomain: picimpact
+  routes:
+    - /=http://$uid.web.app.ikw.lzc.picimpact.lzcapp:3000
+  multi_instance: true
+services:
+  web:
+    image: registry.lazycat.cloud/u67739569/besscroft/picimpact:222c5f0502a49af0
+    environment:
+      - TZ=Asia/Shanghai
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/picimpact
+      - DIRECT_URL=postgresql://postgres:postgres@db:5432/picimpact
+      - BETTER_AUTH_SECRET=picimpact-secret-key-change-in-production
+    depends_on:
+      - db
+    binds:
+      - /lzcapp/var/data:/home/node/app/data
+      - /lzcapp/var/data:/home/nonroot/.picimpact
+  db:
+    image: registry.lazycat.cloud/u67739569/library/postgres:44d53a97289776b1
+    environment:
+      - TZ=Asia/Shanghai
+      - POSTGRES_DB=picimpact
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    binds:
+      - /lzcapp/var/data/db:/var/lib/postgresql/data
